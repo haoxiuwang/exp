@@ -1,0 +1,11 @@
+name: EAS Build
+on: [push]
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+      - run: npm install -g eas-cli
+      - run: eas login --token ${{ secrets.expo }}
+      - run: eas build --platform all --auto-submit
